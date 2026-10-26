@@ -1,0 +1,410 @@
+{
+  "name": "Retail Profitability Intelligence",
+  "compatibilityLevel": 1601,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "tables": [
+      {
+        "name": "Products",
+        "columns": [
+          {
+            "name": "ProductKey",
+            "dataType": "string",
+            "sourceColumn": "ProductKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Product",
+            "dataType": "string",
+            "sourceColumn": "Product",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Category",
+            "dataType": "string",
+            "sourceColumn": "Category",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ListPrice",
+            "dataType": "double",
+            "sourceColumn": "ListPrice",
+            "summarizeBy": "none",
+            "formatString": "$#,0.00"
+          },
+          {
+            "name": "UnitCost",
+            "dataType": "double",
+            "sourceColumn": "UnitCost",
+            "summarizeBy": "none",
+            "formatString": "$#,0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Products",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [ProductKey = text, Product = text, Category = text, ListPrice = number, UnitCost = number], {\n       {\"P01\", \"Laptop Pro\", \"Computing\", 1120, 690},\n       {\"P02\", \"Laptop Air\", \"Computing\", 790, 480},\n       {\"P03\", \"Monitor 27\", \"Displays\", 330, 180},\n       {\"P04\", \"Monitor 32\", \"Displays\", 510, 290},\n       {\"P05\", \"USB-C Hub\", \"Accessories\", 89, 38},\n       {\"P06\", \"Keyboard MX\", \"Accessories\", 145, 70},\n       {\"P07\", \"Mouse Pro\", \"Accessories\", 72, 29},\n       {\"P08\", \"Webcam HD\", \"Accessories\", 125, 58},\n       {\"P09\", \"Tablet 11\", \"Mobile\", 570, 330},\n       {\"P10\", \"Phone Lite\", \"Mobile\", 440, 258},\n       {\"P11\", \"Headphones ANC\", \"Audio\", 225, 110},\n       {\"P12\", \"Speaker Mini\", \"Audio\", 130, 61}\n    })\nin\n    Source"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Regions",
+        "columns": [
+          {
+            "name": "RegionKey",
+            "dataType": "string",
+            "sourceColumn": "RegionKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "sourceColumn": "Region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Regions",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [RegionKey = text, Region = text, City = text], {\n       {\"R1\", \"North\", \"Milan\"},\n       {\"R2\", \"North-East\", \"Venice\"},\n       {\"R3\", \"Central\", \"Rome\"},\n       {\"R4\", \"South\", \"Naples\"}\n    })\nin\n    Source"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Channels",
+        "columns": [
+          {
+            "name": "ChannelKey",
+            "dataType": "string",
+            "sourceColumn": "ChannelKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Channel",
+            "dataType": "string",
+            "sourceColumn": "Channel",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Channels",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [ChannelKey = text, Channel = text], {\n       {\"C1\", \"E-commerce\"},\n       {\"C2\", \"Retail Stores\"},\n       {\"C3\", \"B2B\"}\n    })\nin\n    Source"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Segments",
+        "columns": [
+          {
+            "name": "SegmentKey",
+            "dataType": "string",
+            "sourceColumn": "SegmentKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Segment",
+            "dataType": "string",
+            "sourceColumn": "Segment",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Segments",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Source = #table(type table [SegmentKey = text, Segment = text], {\n       {\"S1\", \"Consumer\"},\n       {\"S2\", \"Small Business\"},\n       {\"S3\", \"Enterprise\"}\n    })\nin\n    Source"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Dates",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date",
+            "summarizeBy": "none",
+            "formatString": "yyyy-mm-dd"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MonthNo",
+            "dataType": "int64",
+            "sourceColumn": "MonthNo",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Month",
+            "dataType": "string",
+            "sourceColumn": "Month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "YearMonth",
+            "dataType": "string",
+            "sourceColumn": "YearMonth",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "string",
+            "sourceColumn": "Quarter",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Dates",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    Start = #date(2024,1,1),\n    Count = Duration.Days(#date(2026,1,1) - Start),\n    Source = Table.FromList(List.Dates(Start,Count,#duration(1,0,0,0)),Splitter.SplitByNothing(),{\"Date\"}),\n    Typed = Table.TransformColumnTypes(Source,{{\"Date\",type date}}),\n    Year = Table.AddColumn(Typed,\"Year\",each Date.Year([Date]),Int64.Type),\n    MonthNo = Table.AddColumn(Year,\"MonthNo\",each Date.Month([Date]),Int64.Type),\n    Month = Table.AddColumn(MonthNo,\"Month\",each Date.ToText([Date],\"MMM\",\"en-US\"),type text),\n    YearMonth = Table.AddColumn(Month,\"YearMonth\",each Date.ToText([Date],\"yyyy-MM\"),type text),\n    Quarter = Table.AddColumn(YearMonth,\"Quarter\",each \"Q\" & Text.From(Date.QuarterOfYear([Date])),type text)\nin\n    Quarter"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Sales",
+        "columns": [
+          {
+            "name": "OrderID",
+            "dataType": "int64",
+            "sourceColumn": "OrderID",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "OrderDate",
+            "dataType": "dateTime",
+            "sourceColumn": "OrderDate",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ProductKey",
+            "dataType": "string",
+            "sourceColumn": "ProductKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "RegionKey",
+            "dataType": "string",
+            "sourceColumn": "RegionKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "ChannelKey",
+            "dataType": "string",
+            "sourceColumn": "ChannelKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SegmentKey",
+            "dataType": "string",
+            "sourceColumn": "SegmentKey",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "int64",
+            "sourceColumn": "Quantity",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "DiscountRate",
+            "dataType": "double",
+            "sourceColumn": "DiscountRate",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Returned",
+            "dataType": "int64",
+            "sourceColumn": "Returned",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Sales",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": "let\n    N = 4800,\n    Indices = List.Numbers(1,N),\n    Rows = List.Transform(Indices, (i) =>\n        let\n            d = Date.AddDays(#date(2024,1,1), Number.Mod(i * 47 + Number.IntegerDivide(i,15),730)),\n            p = Number.Mod(i*7 + Number.IntegerDivide(i,11),12),\n            region = Number.Mod(i*3 + Number.IntegerDivide(i,7),4),\n            channel = Number.Mod(i*5 + Number.IntegerDivide(i,13),3),\n            segment = Number.Mod(i*7 + Number.IntegerDivide(i,17),3),\n            qty = 1 + Number.Mod(i*13,7),\n            disc = Number.From(Number.Mod(i*11,6)) * 0.025,\n            returned = if Number.Mod(i*17,37) = 0 then 1 else 0\n        in\n            {i,d,\"P\" & Text.PadStart(Text.From(p+1),2,\"0\"),\"R\" & Text.From(region+1),\"C\" & Text.From(channel+1),\"S\" & Text.From(segment+1),qty,disc,returned}\n    ),\n    Source = #table(type table [OrderID=Int64.Type,OrderDate=date,ProductKey=text,RegionKey=text,ChannelKey=text,SegmentKey=text,Quantity=Int64.Type,DiscountRate=number,Returned=Int64.Type],Rows)\nin\n    Source"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Revenue",
+            "expression": "SUMX ( Sales, Sales[Quantity] * RELATED ( Products[ListPrice] ) * ( 1 - Sales[DiscountRate] ) * ( 1 - Sales[Returned] ) )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Gross Sales",
+            "expression": "SUMX ( Sales, Sales[Quantity] * RELATED ( Products[ListPrice] ) )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Discount Amount",
+            "expression": "SUMX ( Sales, Sales[Quantity] * RELATED ( Products[ListPrice] ) * Sales[DiscountRate] )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "COGS",
+            "expression": "SUMX ( Sales, Sales[Quantity] * RELATED ( Products[UnitCost] ) * ( 1 - Sales[Returned] ) )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Gross Profit",
+            "expression": "[Revenue] - [COGS]",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Gross Margin %",
+            "expression": "DIVIDE ( [Gross Profit], [Revenue] )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Orders",
+            "expression": "CALCULATE ( DISTINCTCOUNT ( Sales[OrderID] ), Sales[Returned] = 0 )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Units Sold",
+            "expression": "CALCULATE ( SUM ( Sales[Quantity] ), Sales[Returned] = 0 )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Average Order Value",
+            "expression": "DIVIDE ( [Revenue], [Orders] )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Returned Orders",
+            "expression": "CALCULATE ( DISTINCTCOUNT ( Sales[OrderID] ), Sales[Returned] = 1 )",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Return Rate %",
+            "expression": "DIVIDE ( [Returned Orders], DISTINCTCOUNT ( Sales[OrderID] ) )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Discount %",
+            "expression": "DIVIDE ( [Discount Amount], [Gross Sales] )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Revenue LY",
+            "expression": "CALCULATE ( [Revenue], SAMEPERIODLASTYEAR ( Dates[Date] ) )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Revenue YoY %",
+            "expression": "DIVIDE ( [Revenue] - [Revenue LY], [Revenue LY] )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Profit LY",
+            "expression": "CALCULATE ( [Gross Profit], SAMEPERIODLASTYEAR ( Dates[Date] ) )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Profit YoY %",
+            "expression": "DIVIDE ( [Gross Profit] - [Profit LY], [Profit LY] )",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Revenue YTD",
+            "expression": "TOTALYTD ( [Revenue], Dates[Date] )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Gross Profit YTD",
+            "expression": "TOTALYTD ( [Gross Profit], Dates[Date] )",
+            "formatString": "$#,0;($#,0)"
+          },
+          {
+            "name": "Profit per Order",
+            "expression": "DIVIDE ( [Gross Profit], [Orders] )",
+            "formatString": "$#,0;($#,0)"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "rel_Products",
+        "fromTable": "Sales",
+        "fromColumn": "ProductKey",
+        "toTable": "Products",
+        "toColumn": "ProductKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "rel_Regions",
+        "fromTable": "Sales",
+        "fromColumn": "RegionKey",
+        "toTable": "Regions",
+        "toColumn": "RegionKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "rel_Channels",
+        "fromTable": "Sales",
+        "fromColumn": "ChannelKey",
+        "toTable": "Channels",
+        "toColumn": "ChannelKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "rel_Segments",
+        "fromTable": "Sales",
+        "fromColumn": "SegmentKey",
+        "toTable": "Segments",
+        "toColumn": "SegmentKey",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      },
+      {
+        "name": "rel_Dates",
+        "fromTable": "Sales",
+        "fromColumn": "OrderDate",
+        "toTable": "Dates",
+        "toColumn": "Date",
+        "crossFilteringBehavior": "oneDirection",
+        "isActive": true
+      }
+    ]
+  }
+}

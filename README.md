@@ -2,16 +2,16 @@
 ## Dashboard Previews
 
 ### 1. Executive Overview
-![Executive Overview](1.png)
+![Executive Overview](Retail_Profitability_Intelligence_PowerBI_FIXED/Retail_Profitability_Intelligence/1.png)
 
 ### 2. Profitability Drivers
-![Profitability Drivers](2.png)
+![Profitability Drivers](Retail_Profitability_Intelligence_PowerBI_FIXED/Retail_Profitability_Intelligence/2.png)
 
 ### 3. Product Performance
-![Product Performance](3.png)
+![Product Performance](Retail_Profitability_Intelligence_PowerBI_FIXED/Retail_Profitability_Intelligence/3.png)
 
 ### 4. Channel & Region
-![Channel and Region](4.png)
+![Channel and Region](Retail_Profitability_Intelligence_PowerBI_FIXED/Retail_Profitability_Intelligence/4.png)
 **Power BI | DAX | Business Intelligence | Financial Performance Analytics**
 
 ## Project Overview

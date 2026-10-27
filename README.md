@@ -1,5 +1,17 @@
 # Retail Profitability Intelligence
+## Dashboard Previews
 
+### 1. Executive Overview
+![Executive Overview](1.png)
+
+### 2. Profitability Drivers
+![Profitability Drivers](2.png)
+
+### 3. Product Performance
+![Product Performance](3.png)
+
+### 4. Channel & Region
+![Channel and Region](4.png)
 **Power BI | DAX | Business Intelligence | Financial Performance Analytics**
 
 ## Project Overview
